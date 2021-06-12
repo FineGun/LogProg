@@ -1,0 +1,70 @@
+﻿@page
+@model LogicalProgramming.Pages.TaskPages.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Pages/Shared/AdminLTE/_Layout.cshtml";
+}
+
+<h1>Create</h1>
+
+<h4>LogicalTask</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="LogicalTask.Name" class="control-label"></label>
+                <input asp-for="LogicalTask.Name" class="form-control" />
+                <span asp-validation-for="LogicalTask.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LogicalTask.Description" class="control-label"></label>
+                <input asp-for="LogicalTask.Description" class="form-control" />
+                <span asp-validation-for="LogicalTask.Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LogicalTask.Content" class="control-label"></label>
+                <input asp-for="LogicalTask.Content" class="form-control editorHtml" />
+                <span asp-validation-for="LogicalTask.Content" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LogicalTask.Category" class="control-label"></label>
+                <select asp-for="LogicalTask.Category" class="form-control" asp-items="ViewBag.Category"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="https://cdn.tiny.cloud/1/m87r1zlbtf6nj9zlfocquz5m28wg9jtwbdq8nn0xhfbmsido/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+
+    <script type="text/javascript"> 
+        tinymce.init({
+            selector: '#LogicalTask_Content',
+            height: 500,
+            width: 800,
+            plugins: 'codesample',
+            codesample_languages: [
+                { text: "prolog", value: "prolog" },
+                { text: 'HTML/XML', value: 'markup' },
+                { text: 'JavaScript', value: 'javascript' },
+                { text: 'PHP', value: 'php' },
+                { text: 'Ruby', value: 'ruby' },
+                { text: 'Python', value: 'python' },
+                { text: 'C#', value: 'csharp' },
+
+            ],
+            toolbar: 'codesample'
+        });
+    </script>
+}
